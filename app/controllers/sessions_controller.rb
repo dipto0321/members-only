@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:sessions][:email])
 
     if @user && @user.authenticate(params[:sessions][:password])
-      session[:user_id] = @user.id
+      log_in(@user)
       flash[:success] = "#{@user.name} sign in"
       redirect_to @user
     else
@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    
+    session[:user_id] = nil
+    redirect_to signin_path
   end
 end
