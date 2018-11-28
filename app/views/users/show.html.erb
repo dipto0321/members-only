@@ -1,2 +1,5 @@
 <%provide :title, "User" %>
 <%= @user.name %>
+<% @user.posts.each do |post| %>
+  <%= post.title%>
+<%end%>
