@@ -9,10 +9,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    if @post.nil? 
-      flash[:danger] = "No post found"
-      redirect_to new_user_post_path
-    end
+    
   end
 
   def new
@@ -35,9 +32,18 @@ class PostsController < ApplicationController
   end
 
   def update
+    if @post.update(post_params)
+      redirect_to [@user, @post]
+    else
+      render 'edit'
+    end
+
+
   end
 
   def destroy
+    @post.destroy
+    redirect_to [@user, @posts]
   end
 
   private
@@ -45,7 +51,11 @@ class PostsController < ApplicationController
   def find_post
     @user = User.find_by(id: params[:user_id])
     @posts = @user.posts
-    @post = @posts.find_by(id:params[:id])
+    @post = @posts.find_by(id: params[:id])
+    if @post.nil? 
+      flash[:danger] = "No post found"
+      redirect_to new_user_post_path
+    end
   end
 
   def post_params
