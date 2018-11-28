@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      flash[:success] = "Welcome to Members-Only #{@user.name}!"
       redirect_to @user
     else
       render 'new'
@@ -47,7 +48,11 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id:params[:id])
+    if @user.nil?
+      flash[:danger] = "User does not exist or has been deleted "
+      redirect_to signup_path
+    end
   end
 
 end
