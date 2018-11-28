@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
+
   def index
   end
 
@@ -52,6 +54,13 @@ class UsersController < ApplicationController
     if @user.nil?
       flash[:danger] = "User does not exist or has been deleted "
       redirect_to signup_path
+    end
+  end
+
+  def logged_in_user
+    if current_user.nil?
+      flash[:danger] = "Please log in first"
+      redirect_to signin_path
     end
   end
 
