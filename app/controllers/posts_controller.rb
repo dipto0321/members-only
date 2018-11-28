@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   
-  before_action :find_post, except: [:index, :new]
+  before_action :find_post, except: [:index, :new, :create]
 
 
   def index
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @user = User.find_by(id:params[:user_id])
+    @user = User.find_by(id: params[:user_id])
     @post = @user.posts.build
   end
 
@@ -24,6 +24,14 @@ class PostsController < ApplicationController
   end
 
   def create
+    @user = User.find_by(id: params[:user_id])
+    @post = @user.posts.new(post_params)
+    if @post.save
+      flash[:success] = 'Post created!'
+      redirect_to user_post_path
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -38,5 +46,9 @@ class PostsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @posts = @user.posts
     @post = @posts.find_by(id:params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :content)
   end
 end
