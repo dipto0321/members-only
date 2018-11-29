@@ -1,6 +1,6 @@
 module ApplicationHelper
   def full_title(title)
-    @base = 'Members Only'
+    @base = 'Microverse Forum'
     page_title = title.nil? ? @base : title + ' | ' + @base
   end
 
@@ -13,5 +13,13 @@ module ApplicationHelper
   def display_delete
     
     params[:action] == 'edit' ? nil : 'display-none'
+  end
+
+  def author(post)
+    author = User.find_by(id: post.user_id)
+  end
+
+  def user_post(post)
+    user_post_path(post.user_id, post)
   end
 end

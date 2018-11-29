@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'posts#index'
   get 'posts/index'
   get '/posts', to: 'posts#index'
   get 'posts/show'
@@ -7,7 +8,6 @@ Rails.application.routes.draw do
   get 'posts/create'
   get 'posts/update'
   get 'posts/destroy'
-  root 'application#home'
   get 'sessions/new'
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"

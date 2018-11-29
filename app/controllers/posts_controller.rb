@@ -43,7 +43,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to [@user, @posts]
+    redirect_to @user
   end
 
   private
