@@ -54,6 +54,7 @@ group :development, :test do
   # The basics
   gem 'minitest'
   gem 'minitest-rails'
+  gem 'rails-controller-testing'
 
   # For better display
   gem 'minitest-reporters'

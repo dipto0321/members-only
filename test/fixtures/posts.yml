@@ -1,11 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+first_post:
+  title: First Post
+  content: Eam persius scriptorem no, ex perpetua efficiendi pri. No hinc novum dolores nec. Vidit possit ex eos, pri cu suscipit persecuti. Iudico cetero te mea, ea quem argumentum eam. Ex vel viderer vulputate definitiones.
+  user_id: users(:michael).id
+  created_at: <%=Time.zone.now%>
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+second_post:
+  title: Second Post
+  content: Eam persius scriptorem no, ex perpetua efficiendi pri. No hinc novum dolores nec. Vidit possit ex eos, pri cu suscipit persecuti. Iudico cetero te mea, ea quem argumentum eam. Ex vel viderer vulputate definitiones.
+  user_id: users(:michael).id
+  created_at: <%=Time.zone.now%>
