@@ -1,5 +1,5 @@
 <%provide :title, "User" %>
-<%= @user.name %>
-<% @user.posts.each do |post| %>
-  <%= post.title%>
-<%end%>
+<h1><%= @user.name %></h1>
+<p>
+  <%= link_to "Create Post", new_user_post_path(current_user.id), class: "btn btn-primary"%>
+</p>
