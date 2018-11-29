@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   
   before_action :find_post, except: [:index, :new, :create]
   before_action :logged_in_user, only: [:edit,:new,:create,:update,:destroy]
+  before_action :authorized_user, only: [:new,:edit,:update, :destroy]
 
   def index
     @user = User.find_by(id: params[:user_id])
