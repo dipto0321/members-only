@@ -14,6 +14,21 @@ module SessionsHelper
     end
   end
 
+  def logged_in_user
+    if !logged_in?
+      flash[:danger] = "Please log in first"
+      redirect_to signin_path
+    end
+  end
+
+  def authorized_user
+    user = User.find_by(id:params[:id])
+    if !current_user?(user)
+      flash[:danger] = 'You are not authorized to do that.'
+      redirect_to current_user
+    end
+  end
+
   # to test if a user is logged in
   def logged_in?
     !current_user.nil?

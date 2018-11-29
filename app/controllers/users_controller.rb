@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
-  before_action :logged_in_user,:authorized_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user,:authorized_user, only: [:show,:edit, :update, :destroy]
 
   def index
   end
@@ -59,19 +59,5 @@ class UsersController < ApplicationController
     end
   end
 
-  def logged_in_user
-    if current_user.nil?
-      flash[:danger] = "Please log in first"
-      redirect_to signin_path
-    end
-  end
-
-  def authorized_user
-    user = User.find_by(id:params[:id])
-    if !current_user?(user)
-      flash[:danger] = 'You are not authorized to do that.'
-      redirect_to current_user
-    end
-  end
 
 end
