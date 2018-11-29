@@ -1,5 +1,22 @@
 <%provide :title, "User" %>
 <h1><%= @user.name %></h1>
 <p>
-  <%= link_to "Create Post", new_user_post_path(current_user.id), class: "btn btn-primary"%>
+  <%= link_to "Create Post", new_user_post_path(@user.id), class: "btn btn-primary"%>
 </p>
+
+<div class="row">
+<% (@user.posts.length-1).downto(0) do |i| %>
+
+<% post = @user.posts[i] %>
+<div class="col-3 my-2 mx-2">
+  <div class="card" style="width: 18rem;">
+    <%= image_tag 'demo.svg', class: "card-img-top", alt:"Post image" %>
+    <div class="card-body">
+      <h5 class="card-title"><%=post.title%></h5>
+      <p class="card-text"><%=truncate(post.content, length:100)%></p>
+      <a href="<%= user_post_path(@user,post)%>" class="btn btn-link">Read more</a>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
