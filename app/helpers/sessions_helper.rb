@@ -14,6 +14,11 @@ module SessionsHelper
     end
   end
 
+  # to test if a user is logged in
+  def logged_in?
+    !current_user.nil?
+  end
+
   # To test whether the current signed in user is the same user in the link
   def current_user?(user)
     current_user == user
