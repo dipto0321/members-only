@@ -33,4 +33,18 @@ class ActiveSupport::TestCase
   fixtures :all
   # Add more helper methods to be used by all tests here...
   ActiveRecord::Migration.check_pending!
+
+  def is_signed_in?
+    !session[:user_id].nil?
+  end
+
+  def sign_in_as(user)
+    session[:user_id] = user.id
+  end
+end
+
+class ActionDispatch::IntegrationTest
+  def sign_in_as(user, password: 'password')
+    post signin_path, params: { session: { email: user.email, password: password}}
+  end
 end
