@@ -22,5 +22,4 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user1)
     assert_template 'users/edit'
   end
-
 end
