@@ -22,7 +22,8 @@ module SessionsHelper
   end
 
   def authorized_user
-    user = User.find_by(id:params[:user_id])
+    id = params[:controller] == "post" ? :user_id : :id
+    user = User.find_by(id:params[id])
     if !current_user?(user)
       flash[:danger] = 'You are not authorized to do that.'
       redirect_to current_user
