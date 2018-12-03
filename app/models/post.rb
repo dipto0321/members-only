@@ -9,4 +9,8 @@ class Post < ApplicationRecord
   def self.all_posts
     Post.select(:id, :title, :user_id, :content).includes(:user)
   end
+
+  def author
+    user
+  end
 end

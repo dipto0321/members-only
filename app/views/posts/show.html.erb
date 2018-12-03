@@ -2,10 +2,10 @@
 <h1><%= @post.title %></h1>
 <% if logged_in?%>
   <p>
-    <small>by: <%= author(@post).name%></small> <br>
+    <small>by: <%= @post.author.name%></small> <br>
     <small>Created At: <%= @post.post_created %></small>
   </p>
-  <% if current_user?(author(@post)) %>
+  <% if current_user?(@post.author) %>
     <div class="btn-group" role="group" aria-label="Basic example">
       <a href="<%= edit_user_post_path(@post.user_id,@post.id)%>" class="btn btn-warning"> <i class="fa fa-pencil"></i></a>
       <a href="<%= user_post(@post) %>" data-method="delete" class="btn btn-danger"> <i class="fa fa-trash"></i></a>

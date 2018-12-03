@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # debugger
+    
   end
 
   def create
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(id:params[:id])
+    @user = User.find_select_user(params[:id])
     if @user.nil?
       flash[:danger] = "User does not exist or has been deleted"
       redirect_to signup_path

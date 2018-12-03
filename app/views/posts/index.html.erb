@@ -2,7 +2,7 @@
 <h1>Posts</h1>
 <% if logged_in? %>
 <p>
-  <%= link_to "Create Post", new_user_post_path(current_user.first.id), class: "btn btn-primary"%>
+  <%= link_to "Create Post", new_user_post_path(current_user.id), class: "btn btn-primary"%>
 </p>
 <%end%>
 
