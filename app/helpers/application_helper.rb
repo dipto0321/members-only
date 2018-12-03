@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def author(post)
-    author = User.find_by(id: post.user_id)
+    author = User.find_select_user(post.user_id)
   end
 
   def user_post(post)

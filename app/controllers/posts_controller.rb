@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   before_action :authorized_user, only: [:new, :create,:edit,:update, :destroy]
 
   def index
-    @user = User.find_by(id: params[:user_id])
-    @posts = params[:user_id].nil? ? Post.all : @user.posts.all
+    @user = User.find_select_user(params[:user_id]).select(:id, :name)
+    @posts = params[:user_id].nil? ? Post.all_posts : @user.posts.all_posts
   end
 
   def show
