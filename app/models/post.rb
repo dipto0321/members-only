@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   end
 
   def self.all_posts
-    Post.select(:id, :title, :user_id, :content).includes(:user)
+    select(:id, :title, :user_id, :content).includes(:user)
   end
 
   def author

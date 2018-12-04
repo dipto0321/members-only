@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def self.find_select_user(id)
-    User.where(id:id).first
+    where(id:id).first
   end
 end
