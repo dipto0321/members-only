@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   validates :title, :content, presence: true
   belongs_to :user
+  has_many :comments, as: :commentable
 
   def post_created
     self.created_at.localtime.to_s.gsub(/.\+.{4}/, '')

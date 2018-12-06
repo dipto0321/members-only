@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: {case_insensitive: false}
   has_secure_password
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # To generate a random string
   def self.new_token
