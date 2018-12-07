@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
-    @author = @comment.commentable.user
+    @author = @comment.commentable.commentable.user
     @comment.save
     flash[:success] = "Comment sent"
     redirectlocation = @commentable.class == Comment ? @comment.commentable.commentable : @commentable
@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:body)
   end
