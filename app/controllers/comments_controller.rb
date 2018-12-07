@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
-    @author = @comment.commentable.commentable.user
+    @author = @commentable.class == Comment ? @comment.commentable.commentable.user : @comment.commentable.user
     @comment.save
     flash[:success] = "Comment sent"
     redirectlocation = @commentable.class == Comment ? @comment.commentable.commentable : @commentable
