@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col">
-    <ul class="card">
+    <ul>
       <% if commentable.comments.any? %>
         <% commentable.comments.eager_load(:user).each do |comment| %>
-          <li>
+          <li class="alert-info my-2 p-2">
             <h6><%= comment.user.name %>- <small class="comment-time"><%= time_ago_in_words(comment.created_at)%> ago</small></h6>
             <%= comment.body %>
             <% if comment.id != params[:comment_id].to_i %>
@@ -14,13 +14,13 @@
               <%= render partial: "form", locals: {commentable: comment} %>
             <% end %>
             <% if comment.comments.any? %>
+              <div class="card alert m-3">
               <div class="card alert">
-              <div class="card alert alert-success">
                 <p>Replies to <%= comment.user.name%>: </p>
                 <ul>
                   <% comment.comments.eager_load(:user).each do |reply| %>
-                    <li>
-                      <strong><%= reply.user.name %> </strong>: <%= reply.body %> <small class="comment-time"><%= time_ago_in_words(comment.created_at)%> ago</small>
+                    <li class="alert alert-success">
+                      <%= reply.body %>- <small>by: <strong><%= reply.user.name %> </strong></small> <small class="comment-time"><%= time_ago_in_words(comment.created_at)%> ago</small>
                     </li>
                   <% end %>
                 </ul>
