@@ -4,7 +4,7 @@
       <% if commentable.comments.any? %>
         <% commentable.comments.eager_load(:user).each do |comment| %>
           <li>
-            <h6><%= comment.user.name %></h6>
+            <h6><%= comment.user.name %>- <small class="comment-time"><%= time_ago_in_words(comment.created_at)%> ago</small></h6>
             <%= comment.body %>
             <% if comment.id != params[:comment_id].to_i %>
             <%= link_to "Reply", reply_url(comment.commentable.user, comment.commentable, comment) %>
@@ -20,7 +20,7 @@
                 <ul>
                   <% comment.comments.eager_load(:user).each do |reply| %>
                     <li>
-                      <strong><%= reply.user.name %>: </strong> <%= reply.body %>
+                      <strong><%= reply.user.name %> </strong>: <%= reply.body %> <small class="comment-time"><%= time_ago_in_words(comment.created_at)%> ago</small>
                     </li>
                   <% end %>
                 </ul>
