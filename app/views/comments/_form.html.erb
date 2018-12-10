@@ -1,0 +1,16 @@
+<div class="col">
+  
+  <%= form_for [commentable, Comment.new] do |f| %>
+    <% current = current_user ? current_user : ""%>
+    <%= f.hidden_field :user, value: current %>
+    <div class="form-group">
+      <% textplaceholder = commentable == @post ? "Add Comment" : "Reply to #{commentable.user.name}" %>
+      <%= f.text_area :body, class: "form-control", placeholder: textplaceholder %>
+    </div>
+    <% if commentable == @post %>
+      <%= f.submit "Comment",  class: "btn btn-info btn-sm" %>
+    <% else %>
+      <%= f.submit "Reply",  class: "btn btn-success btn-sm" %>
+    <% end %>
+  <% end %>
+</div>
