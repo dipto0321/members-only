@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col">
+    <ul>
+      <% if commentable.comments.any? %>
+        <% commentable.comments.eager_load(:user).each do |comment| %>
+          <li class="alert-info my-2 p-2">
+            <h6><%= comment.user.name %>- <small class="comment-time"><%= time_ago_in_words(comment.created_at)%> ago</small></h6>
+            <%= comment.body %>
+            <% if comment.id != params[:comment_id].to_i %>
+            <%= link_to "Reply", reply_url(comment.commentable.user, comment.commentable, comment) %>
+            <% end %>
+            <br>
+            <% if comment.id == params[:comment_id].to_i %>
+              <%= render partial: "form", locals: {commentable: comment} %>
+            <% end %>
+            <% if comment.comments.any? %>
+              <div class="card alert m-3">
+              <div class="card alert">
+                <p>Replies to <%= comment.user.name%>: </p>
+                <ul>
+                  <% comment.comments.eager_load(:user).each do |reply| %>
+                    <li class="alert alert-success">
+                      <%= reply.body %>- <small>by: <strong><%= reply.user.name %> </strong></small> <small class="comment-time"><%= time_ago_in_words(comment.created_at)%> ago</small>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

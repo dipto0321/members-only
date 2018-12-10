@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :authorized_user, only: [:new, :create,:edit,:update, :destroy]
 
   def index
-    @user = User.find_select_user(params[:user_id]).select(:id, :name)
+    @user = User.find_select_user(params[:user_id])
     @posts = params[:user_id].nil? ? Post.all_posts : @user.posts.all_posts
   end
 
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_select_user(params[:user_id])
     @post = @user.posts.build
   end
 

@@ -15,9 +15,9 @@ module ApplicationHelper
     params[:action] == 'edit' ? nil : 'display-none'
   end
 
-  def author(post)
-    author = User.find_select_user(post.user_id)
-  end
+  # def author(post)
+  #   author = User.find_select_user(post.user_id).first
+  # end
 
   def user_post(post)
     user_post_path(post.user_id, post)
