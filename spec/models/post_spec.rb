@@ -34,7 +34,7 @@ describe "Post" do
   context "post_created instance method" do
     it "returns a string version of the post's created date" do
       post = FactoryBot.build(:post)
-      expect(post.post_created).to eq(Time.now.localtime.to_s.gsub(/.\+.{4}/,''))
+      expect(post.post_created).to eq(post.created_at.localtime.to_s.gsub(/.\+.{4}/,''))
     end
   end
 
