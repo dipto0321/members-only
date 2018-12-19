@@ -14,7 +14,7 @@ describe "Comment" do
 
   context "default scope" do
     it "lists comments starting from the latest created one" do
-      skip
+      expect(Comment.first.created_at > Comment.last.created_at).to be(true)
     end
   end
 end
