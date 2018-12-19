@@ -1,15 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe 'User' do
+describe 'User' do
+
+  context "factories" do
+    it "has a valid factory" do
+      expect(FactoryBot.build(:user)).to be_valid
+    end
+  end
   
   context "validations" do
     before :each do
-      @user = User.new(
-        name: "George",
-        email: "george@gmail.com",
-        password: "password",
-        password_confirmation: "password"
-      )
+      @user = FactoryBot.build(:user)
     end
 
     it "is valid with name, email and password/password-confirmation" do
