@@ -50,18 +50,21 @@ gem "font-awesome-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 3.11', '>= 3.11.1'
-  # The basics
-  gem 'minitest'
-  gem 'minitest-rails'
+
+  # Rspec rails
+  gem 'rspec-rails', '~> 3.8'
   gem 'rails-controller-testing'
-
-  # For better display
-  gem 'minitest-reporters'
-
-  # For managing testing data
-  gem 'database_cleaner'
   gem 'faker'
+end
+
+group :test do
+  # Database cleaner
+  gem 'database_cleaner'
+  # Capybara
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'factory_bot_rails'
+  gem 'launchy'
 end
 
 group :development do
