@@ -1,4 +1,4 @@
-module SessionsHelper
+module SpecTestHelper
 
   # Creates a session id for a user
   def log_in(user)
@@ -44,4 +44,5 @@ module SessionsHelper
     session[:user_id] = nil
     redirect_to signin_path
   end
+
 end
